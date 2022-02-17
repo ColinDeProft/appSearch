@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common'
+import { Controller, Post, Body } from '@nestjs/common'
 import { CriteriaList } from '../dto/criteriaList.dto'
 import { SearchService } from '../services/search.service'
 
@@ -9,7 +9,7 @@ export class CriteriaListsController {
   ) {}
 
   @Post()
-  create(@Body() criteriaList: CriteriaList) {
+  async search(@Body() criteriaList: CriteriaList) {
     return this.searchService.search(criteriaList)
   }
 

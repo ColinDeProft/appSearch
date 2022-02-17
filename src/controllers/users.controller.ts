@@ -4,7 +4,9 @@ import { UserDto } from '../dto/user.dto'
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService
+  ) {}
 
   @Post()
   create(@Body() userDto: UserDto) : Promise<UserDto>{
@@ -19,7 +21,7 @@ export class UsersController {
   // TODO
   @Get(':id')
   findOne(@Param('id') id: string) : Promise<UserDto> {
-    return this.usersService.findOne(+id)
+    return this.usersService.findOne(new UserDto)
   }
 
   // TODO

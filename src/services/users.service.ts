@@ -24,9 +24,8 @@ export class UsersService {
     return this.userRepository.find()
   }
 
-  // TODO
-  findOne(id: number): Promise<UserDto> {
-    return new Promise<UserDto>(null)
+  async findOne(user: UserDto): Promise<UserDto> {
+    return this.userRepository.findOne(user)
   }
 
   // TODO
