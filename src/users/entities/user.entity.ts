@@ -1,17 +1,18 @@
-import {Column,Entity,PrimaryGeneratedColumn} from "typeorm"
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm"
+import { Address } from "./address.entity"
 
 @Entity()
 export class User {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number
     
-    @Column({ nullable: false })
-    username: string;
+  @Column({ nullable: false })
+  username: string
 
-    @Column({ name: 'email', nullable: true })
-    email: string;
+  @Column({ nullable: false })
+  password: string
 
-    @Column({ name: 'password', nullable: false })
-    password: string;
-  }
+  @OneToMany(type => Address, address => address.user) 
+  addresses: Address[]
+}
   
