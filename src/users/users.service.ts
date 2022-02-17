@@ -15,31 +15,22 @@ export class UsersService {
     return this.userRepository.save(userDto)
   }
 
-  findAll(): Promise<UserDto[]> {
+  findAll() : Promise<UserDto[]> {
     return this.userRepository.find()
   }
 
-  private users: User[] = [];
-
-  findOne(id: number): User {
-    return this.users.find((user) => user.id === id);
+  // TODO
+  findOne(id: number) : Promise<UserDto> {
+    return new Promise<UserDto>(null);
   }
 
-  update(id: number, userDto: UserDto): User {
-    const i = this.users.findIndex((user) => user.id == id);
-    if (i === -1) return null;
-    this.users[i] = {
-      ...this.users[i],
-      ...userDto,
-    };
-    return this.users[i];
+  // TODO
+  update(id: number, userDto: UserDto) : Promise<UserDto> {
+    return new Promise<UserDto>(null);
   }
 
-  remove(id: number): User {
-    const i = this.users.findIndex((user) => user.id == id);
-    if (i === -1) return null;
-    const user = this.users[i];
-    this.users.splice(i, 1);
-    return user;
+  // TODO
+  remove(id: number) : Promise<UserDto> {
+    return new Promise<UserDto>(null);
   }
 }

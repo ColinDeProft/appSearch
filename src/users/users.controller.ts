@@ -16,18 +16,21 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
+  // TODO
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: string) : Promise<UserDto> {
     return this.usersService.findOne(+id);
   }
 
+  // TODO
   @Patch(':id')
-  update(@Param('id') id: string, @Body() userDto: UserDto) {
+  update(@Param('id') id: string, @Body() userDto: UserDto) : Promise<UserDto> {
     return this.usersService.update(+id, userDto);
   }
 
+  // TODO
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: string) : Promise<UserDto> {
     return this.usersService.remove(+id);
   }
 }
