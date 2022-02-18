@@ -45,7 +45,7 @@ export class SubscriptionsService {
     // 
     // class inspectImmovlan extends inspector
     // setRequest(criteriaList: string[]) {
-    //  this.request = { reqMethod: this.reqMethod, payload: buildUrl(this.baseUrl, criteriaList) }
+    //  this.request = { this.reqType, this.reqMethod, this.reqBaseUrl, criteriaList }
     // }
     // setMissingCriteria(criteriaList: string[]) {
     //  this.missingCriteria = tools.getMissingCriteria(this.allCriteria, criteriaList)
@@ -56,18 +56,12 @@ export class SubscriptionsService {
     //  return { addresses, this.missingCriteria }
     // }
     // 
-    // class inspectImmoweb extends inspector
-    // setRequest(criteriaList: string[]) {
-    //  this.request = { reqMethod: this.reqMethod, payload: buildJson(criteriaList) }
-    // }
-    // ...
-    // 
     // class tools
-    // sendRequest(request: {}) {
-    //  if(request.method == get) {
-    //    return httpClient.doUrlRequest(request.method, request.payload)
+    // sendRequest(request: { type: string, method: string, baseUrl: string, payload: string[] }) {
+    //  if(request.type == urlRequest) {
+    //    return httpClient.doUrlRequest(request.method, buildUrl(request.baseUrl, request.payload))
     //  } else {
-    //    return httpClient.doPayloadRequest(request.method, request.payload)
+    //    return httpClient.doPayloadRequest(request.method, request.baseUrl, buildJson(request.payload))
     //  }
     // }
     // 
