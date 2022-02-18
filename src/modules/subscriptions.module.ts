@@ -1,18 +1,18 @@
 import { Module } from '@nestjs/common'
-import { SearchService } from '../services/search.service'
+import { SubscriptionsService } from '../services/subscriptions.service'
 import { UsersService } from '../services/users.service'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { CriteriaListsController } from '../controllers/criteriaLists.controller'
+import { SubscriptionsController } from '../controllers/subscriptions.controller'
 import { User } from '../entities/user.entity'
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([User])
   ],
-  controllers: [CriteriaListsController],
+  controllers: [SubscriptionsController],
   providers: [
-    SearchService,
+    SubscriptionsService,
     UsersService
   ]
 })
-export class CriteriaListsModule {}
+export class SubscriptionsModule {}

@@ -1,9 +1,9 @@
 import { IsArray } from "class-validator"
 import { UserDto } from "./user.dto"
 
-export class CriteriaList {
+export class SubscriptionDto {
   @IsArray()
-  list: any = {}
+  criteriaList: any = {}
 
   user: UserDto
 }

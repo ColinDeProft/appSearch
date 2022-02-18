@@ -1,6 +1,6 @@
 module.exports = {
     'type': 'postgres',
-    'url': 'postgres://postgres:password@localhost:5444/postgres',
+    'url': process.env.DB_URL,
     'entities': [process.env.ENTITY_PATH],
     'synchronize': true
 }
