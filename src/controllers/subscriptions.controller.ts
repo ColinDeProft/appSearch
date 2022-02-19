@@ -8,9 +8,21 @@ export class SubscriptionsController {
     private readonly subscriptionsService: SubscriptionsService
   ) {}
 
+  // {
+  //   "criteriaList": {
+  //       "MINPRICE": 200,
+  //       "MAXPRICE": 800,
+  //       "HASGARAGE": null,
+  //       "MINSURFACE": 40
+  //   },
+  //   "user": {
+  //       "username": "abc",
+  //       "password": "abc"
+  //   }
+  // }
   @Post()
-  async subscribe(@Body() subscriptionDto: SubscriptionDto) {
-    return this.subscriptionsService.subscribe(subscriptionDto)
+  async addSub(@Body() subscriptionDto: SubscriptionDto) {
+    return this.subscriptionsService.addSub(subscriptionDto)
   }
 
 }

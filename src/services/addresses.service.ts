@@ -7,18 +7,20 @@ import { Repository } from "typeorm"
 import { validate } from "class-validator"
 
 @Injectable()
-export class AddressService {
+export class AddressesService {
   constructor(
     @InjectRepository(Address)
     private addressRepository: Repository<Address>
   ){}
 
-  create(user: User, address: string): Promise<Address>{
+  // todo address dto
+
+  create(user: UserDto, address: string): Promise<Address>{
     const newAddress = this.addressRepository.create({ user: user, addr: address })
     return this.addressRepository.save(newAddress)
   }
 
-  findOneOrFail(user: User, address: string): Promise<Address> {
-    return this.addressRepository.findOneOrFail({ where: { user: user, addr: address } })
+  findOneOrFail(user: UserDto, address: string): Promise<Address> {
+    return this.addressRepository.findOneOrFail({ where: { user: user, address: address } })
   }
 }
