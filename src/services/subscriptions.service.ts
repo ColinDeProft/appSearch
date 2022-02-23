@@ -14,40 +14,16 @@ export class SubscriptionsService {
 
   constructor(
     private usersService: UsersService,
-    // private addressesService: AddressesService
-  ){
-    this.addSubFake(
-      {
-        "MAX_PRICE": "750",
-        "TRANSACTION_TYPE": "RENT",
-        "PROPERTY_TYPE": "APPARTMENT",
-        "POSTAL_CODE": "1200",
-        "MIN_ENERGY_CLASS": "D",
-        "HAS_GARAGE": null,  // will be ignored
-        "MIN_SURFACE": 40    // will be in unavailable because not usable
-      },
-      {
-        "username": "abc",
-        "password": "abc"
-      }
-    )
-  }
+    private addressesService: AddressesService
+  ){}
 
   async addSub(subscriptionDto: SubscriptionDto): Promise<string> {
-    let user = await this.usersService.findOne(subscriptionDto.user)
-    if(!user)
+    let fetchedUser = await this.usersService.findByUsernameAndPassword(subscriptionDto.user)
+    if(!fetchedUser)
       return "No such user"
-    // this.subscriptions[user.username] = new Subscription(user, this.addressesService, subscriptionDto.criteriaList)
-    this.subscriptions[user.username] = new Subscription(user, subscriptionDto.criteriaList)
-    let newSub = this.subscriptions[user.username]
+    this.subscriptions[fetchedUser.username] = new Subscription(fetchedUser, subscriptionDto.criteriaList, this.addressesService)
+    let newSub = this.subscriptions[fetchedUser.username]
     newSub.spam()
-    return "Updated subscription for " + user.username
-  }
-
-  async addSubFake(criteriaList: {[criterionName: string]: any}, user: UserDto): Promise<string> {
-    this.subscriptions[user.username] = new Subscription(user, criteriaList)
-    let newSub = this.subscriptions[user.username]
-    newSub.spam()
-    return "Updated subscription for " + user.username
+    return "Updated subscription for " + fetchedUser.username
   }
 }

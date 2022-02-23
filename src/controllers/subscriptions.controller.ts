@@ -8,16 +8,20 @@ export class SubscriptionsController {
     private readonly subscriptionsService: SubscriptionsService
   ) {}
 
+  // sample of a subsrciptionDto :
   // {
-  //   "criteriaList": {
-  //       "MINPRICE": 200,
-  //       "MAXPRICE": 800,
-  //       "HASGARAGE": null,
-  //       "MINSURFACE": 40
+  //   criteriaList: {
+  //     "MAX_PRICE": "750",
+  //     "TRANSACTION_TYPE": "RENT",
+  //     "PROPERTY_TYPE": "APPARTMENT",
+  //     "POSTAL_CODE": "1200",
+  //     "MIN_ENERGY_CLASS": "D",
+  //     "HAS_GARAGE": null,  // will be ignored
+  //     "MIN_SURFACE": 40    // will be in unavailable because not usable
   //   },
-  //   "user": {
-  //       "username": "abc",
-  //       "password": "abc"
+  //   user: {
+  //     "username": "abc",
+  //     "password": "abc"
   //   }
   // }
   @Post()

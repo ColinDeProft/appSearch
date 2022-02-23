@@ -5,12 +5,14 @@ import { Address } from '../entities/address.entity'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from "typeorm"
 import { validate } from "class-validator"
+import { UsersService } from './users.service';
 
 @Injectable()
 export class AddressesService {
   constructor(
     @InjectRepository(Address)
-    private addressRepository: Repository<Address>
+    private addressRepository: Repository<Address>,
+    private usersService: UsersService
   ){}
 
   // todo address dto
@@ -20,7 +22,25 @@ export class AddressesService {
     return this.addressRepository.save(newAddress)
   }
 
-  findOneOrFail(user: UserDto, address: string): Promise<Address> {
-    return this.addressRepository.findOneOrFail({ where: { user: user, address: address } })
+  findOne(user: UserDto, address: string): Promise<Address> {
+    // return this.addressRepository.findOneOrFail({ where: { user: user, address: address } })
+    return this.addressRepository.findOne({
+      relations: ['user'],
+      where: {
+        user:  user,
+        addr: address
+      }
+    })
   }
+
+  findAllByUserId(userId: number): Promise<Address[]> {
+    let user = this.usersService.findById(userId)
+    return this.addressRepository.find({
+      relations: ['user'],
+      where: {
+        user:  user
+      }
+    })
+  }
+
 }

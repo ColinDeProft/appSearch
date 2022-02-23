@@ -69,16 +69,11 @@ export class ImmowebInspector extends Inspector {
         await page.click('#uc-btn-accept-banner')
 
         await this.executeFormCallbacks()
-
         await page.click('.form__field-submit__button[type="submit"]')
 
         await page.waitForNavigation()
-        // await page.waitForSelector('.coachmark__content')
-
         let addresses = await page.$$eval('.search-results__list .card__title-link', elts => elts.map(el => el.getAttribute("href").replace(/\?.*/,'')))
-
-        // await page.screenshot({path: 'vwala.png'})
-
+        
         return addresses
     }
 }

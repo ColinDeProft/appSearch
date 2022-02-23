@@ -28,6 +28,23 @@ export class UsersService {
     return this.userRepository.findOne(user)
   }
 
+  async findByUsernameAndPassword(user: UserDto): Promise<UserDto> {
+    return this.userRepository.findOne({
+      where: {
+        username:  user.username,
+        password: user.password
+      }
+    })
+  }
+
+  async findById(userId: number): Promise<UserDto> {
+    return this.userRepository.findOne({
+      where: {
+        id:  userId
+      }
+    })
+  }
+
   // TODO
   update(id: number, userDto: UserDto): Promise<UserDto> {
     return new Promise<UserDto>(null)

@@ -7,15 +7,14 @@ const puppeteer = require('puppeteer')
 
 export class Subscription {
 
-    // addressesService: AddressesService
+    addressesService: AddressesService
     user: UserDto
     inspectors: Inspector[] = new Array
     active: boolean = true
     criteriaList: {[criterionName: string]: any}
 
-    // constructor(user: UserDto, addressesService: AddressesService, criteriaList: {[criterion in keyof typeof allCriteriaNames]: any}) {
-    constructor(user: UserDto, criteriaList: {[criterionName: string]: any}) {
-        // this.addressesService = addressesService
+    constructor(user: UserDto, criteriaList: {[criterionName: string]: any}, addressesService: AddressesService) {
+        this.addressesService = addressesService
         this.user = user
         this.criteriaList = criteriaList
         this.inspectors.push(new ImmowebInspector())
@@ -43,13 +42,15 @@ export class Subscription {
                 inspector.setupInspector(this.criteriaList)
                 let addresses = await inspector.inspect(page)
 
-                // for(const address of addresses) {
-                //     let existingAddress = await this.addressesService.findOneOrFail(this.user, address)
-                //     if (existingAddress)
-                //         addresses.splice(addresses.indexOf(address), 1)
-                //     else
-                //         this.addressesService.create(this.user, address)
-                // })
+                for(let i = 0; i < addresses.length; i++) {
+                    let existingAddress = await this.addressesService.findOne(this.user, addresses[i])
+                    if (existingAddress) {
+                        addresses.splice(i, 1)
+                        i = i-1 // adapt to splice
+                    } else
+                        this.addressesService.create(this.user, addresses[i])
+                    console.log(addresses)
+                }
 
                 await page.close()
 
