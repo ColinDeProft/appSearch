@@ -1,25 +1,12 @@
-export const criteriaNames: string[] = [
-    "maxPrice",
-    "minPrice"
-]
-
-export const ids = [
-    "maxPrice",
-    "minPrice"
-] as const;
-
-export type okName = "max" | "min"
-
-export const ids2 = [
-    "maxPrice",
-    "minPrice"
-] as const;
-
-export enum allCriteria {
-    MAXPRICE,
-    MINPRICE,
-    HASGARAGE,
-    MINSURFACE
+export enum allCriteriaNames {
+    MAX_PRICE,
+    MIN_PRICE,
+    HAS_GARAGE,
+    MIN_SURFACE,
+    TRANSACTION_TYPE,
+    PROPERTY_TYPE,
+    POSTAL_CODE,
+    MIN_ENERGY_CLASS
 }
 
 // export const enum criteriaNames {

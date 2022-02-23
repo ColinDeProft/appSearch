@@ -1,9 +1,9 @@
 import { UserDto } from "./user.dto"
-import { allCriteria } from "../common/constants"
+import { allCriteriaNames } from "../common/constants"
 
 export class SubscriptionDto {
   
-  criteriaList: {[criterion in keyof typeof allCriteria]: any}
+  criteriaList: {[criterionName in keyof typeof allCriteriaNames]: any}
 
   user: UserDto
 }
