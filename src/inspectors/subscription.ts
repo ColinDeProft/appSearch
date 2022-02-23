@@ -11,9 +11,9 @@ export class Subscription {
     user: UserDto
     inspectors: Inspector[] = new Array
     active: boolean = true
-    criteriaList: {[criterionName: string]: any}
+    criteriaList: {[criterionName: string]: string}
 
-    constructor(user: UserDto, criteriaList: {[criterionName: string]: any}, addressesService: AddressesService) {
+    constructor(user: UserDto, criteriaList: {[criterionName: string]: string}, addressesService: AddressesService) {
         this.addressesService = addressesService
         this.user = user
         this.criteriaList = criteriaList

@@ -3,7 +3,7 @@ import { allCriteriaNames } from "../common/constants"
 
 export class SubscriptionDto {
   
-  criteriaList: {[criterionName in keyof typeof allCriteriaNames]: any}
+  criteriaList: {[criterionName: string]: string}
 
   user: UserDto
 }
