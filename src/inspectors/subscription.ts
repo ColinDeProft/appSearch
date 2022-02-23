@@ -32,11 +32,13 @@ export class Subscription {
               height:1080
             }
         })
-        const page = await browser.newPage()
 
         // while (this.active) {
             let inpectorsResults = []
             for(const inspector of this.inspectors) { //!\ .forEach doesnt work with async
+                
+                let page = await browser.newPage() // to check : can we do stuff on multiple pages simultaneously ?
+
                 await inspector.initFormCallbacks(page)
                 inspector.setupInspector(this.criteriaList)
                 let addresses = await inspector.inspect(page)
