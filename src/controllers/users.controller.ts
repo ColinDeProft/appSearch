@@ -14,30 +14,13 @@ export class UsersController {
   //   "password": "abc"
   // }
   @Post()
-  create(@Body() userDto: UserDto) : Promise<UserDto>{
+  create(@Body() userDto: UserDto): Promise<UserDto>{
     return this.usersService.create(userDto)
   }
 
   @Get()
-  async findAll() : Promise<UserDto[]> {
+  async findAll(): Promise<UserDto[]> {
     return this.usersService.findAll()
   }
 
-  // TODO
-  @Get(':id')
-  findOne(@Param('id') id: string) : Promise<UserDto> {
-    return this.usersService.findOne(new User)
-  }
-
-  // TODO
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() userDto: UserDto) : Promise<UserDto> {
-    return this.usersService.update(+id, userDto)
-  }
-
-  // TODO
-  @Delete(':id')
-  remove(@Param('id') id: string) : Promise<UserDto> {
-    return this.usersService.remove(+id)
-  }
 }

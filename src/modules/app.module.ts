@@ -3,13 +3,15 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { UsersModule } from './users.module'
 import { SubscriptionsModule } from './subscriptions.module'
 import { AddressesModule } from './addresses.module'
+import { CriteriaModule } from './criteria.module'
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
     UsersModule,
     SubscriptionsModule,
-    AddressesModule
+    AddressesModule,
+    CriteriaModule
   ],
   controllers: [],
   providers: [],

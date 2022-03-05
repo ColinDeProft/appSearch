@@ -5,11 +5,14 @@ import { User } from "./user.entity"
 export class Address {
   @PrimaryGeneratedColumn()
   id: number
-    
-  @ManyToOne(type => User, user => user.addresses, { nullable: false, eager: true }) 
-  user: User
 
   @Column({ nullable: false })
   addr: string
+
+  @ManyToOne(type => User, user => user.addresses, { 
+    nullable: false, 
+    onDelete: 'CASCADE' 
+  }) 
+  user: User
 }
   

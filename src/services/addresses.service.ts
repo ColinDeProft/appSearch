@@ -23,7 +23,6 @@ export class AddressesService {
   }
 
   findOne(user: UserDto, address: string): Promise<Address> {
-    // return this.addressRepository.findOneOrFail({ where: { user: user, address: address } })
     return this.addressRepository.findOne({
       relations: ['user'],
       where: {

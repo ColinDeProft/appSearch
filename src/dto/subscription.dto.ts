@@ -1,9 +1,16 @@
 import { UserDto } from "./user.dto"
-import { allCriteriaNames } from "../common/constants"
+import { CriterionDto } from "./criterion.dto"
+import { isBoolean } from "class-validator"
 
 export class SubscriptionDto {
   
-  criteriaList: {[criterionName: string]: string}
+  id: number
+
+  interval: number
+  
+  criteriaList: CriterionDto[]
 
   user: UserDto
+
+  is_active: boolean
 }

@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common'
+import { Controller, Post, Body, Get } from '@nestjs/common'
 import { SubscriptionDto } from '../dto/subscription.dto'
 import { SubscriptionsService } from '../services/subscriptions.service'
 
@@ -8,6 +8,7 @@ export class SubscriptionsController {
     private readonly subscriptionsService: SubscriptionsService
   ) {}
 
+  // OUTDATED
   // sample of a subsrciptionDto :
   // {
   //   criteriaList: {
@@ -16,8 +17,8 @@ export class SubscriptionsController {
   //     "PROPERTY_TYPE": "APPARTMENT",
   //     "POSTAL_CODE": "1200",
   //     "MIN_ENERGY_CLASS": "D",
-  //     "HAS_GARAGE": null,  // will be ignored
-  //     "MIN_SURFACE": 40    // will be in unavailable because not usable
+  //     "HAS_GARAGE": null,  // will be ignored in immowebcontroller
+  //     "MIN_SURFACE": 40    // will be in unavailables of immowebcontroller because not usable
   //   },
   //   user: {
   //     "username": "abc",
@@ -25,8 +26,28 @@ export class SubscriptionsController {
   //   }
   // }
   @Post()
-  async addSub(@Body() subscriptionDto: SubscriptionDto) {
-    return this.subscriptionsService.addSub(subscriptionDto)
+  async create(@Body() subscriptionDto: SubscriptionDto): Promise<SubscriptionDto> {
+    console.log("post sub")
+    const createdSubscription = await this.subscriptionsService.create(subscriptionDto)
+    return createdSubscription
+  }
+
+  @Get()
+  async findAll(): Promise<SubscriptionDto[]> {
+    const allSub = await this.subscriptionsService.findAll()
+    return allSub
+  }
+
+  @Get(':id')
+  async findOne(subId: number): Promise<SubscriptionDto> {
+    const existingSub = await this.subscriptionsService.findOne(subId)
+    return existingSub
+  }
+
+  @Post('/setActive')
+  async setActive(@Body() subscriptionDto: SubscriptionDto): Promise<boolean> {
+    const result = await this.subscriptionsService.setActive(subscriptionDto)
+    return result
   }
 
 }
